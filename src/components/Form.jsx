@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { v4 } from "uuid";
 
-export const Form = () => {
+export const Form = ({ citas, setCitas }) => {
   const nuevaFecha = new Date();
   const hoy = `${nuevaFecha.getFullYear()}/${
     nuevaFecha.getMonth() + 1
@@ -18,6 +19,10 @@ export const Form = () => {
     sintomas: "",
   });
 
+  const [error, setError] = useState(false);
+
+  const { mascota, dueño, fecha, hora, sintomas } = formstate;
+
   const handleChange = (evt) => {
     const nuevoState = { ...formstate };
     nuevoState[`${evt.target.name}`] = evt.target.value;
@@ -26,22 +31,45 @@ export const Form = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    var validate = true;
-    for (const prop in formstate) {
-      if (!formstate[prop].trim()) {
-        // console.log(`${prop} dio false`);
-        validate = false;
-      }
+
+    if (
+      !mascota.trim() ||
+      !dueño.trim() ||
+      !fecha.trim() ||
+      !hora.trim() ||
+      !sintomas.trim()
+    ) {
+      setError(true);
+      //si da error se finaliza el metodo, la unica forma de continuar es que la validación sea exitosa
+      //si se espera para comprobar por el state error no funcionará, ya que en algunas ocasiones el state no llega a actualizarse en el momento de usarse.
+      return;
     }
+    setError(false);
 
-    console.log("validate", validate);
+    formstate.id = v4();
+    /**
+     * crear la cita
+     */
+    setCitas([...citas, { formstate }]);
+    alert("la cita se ha agregado correctamente");
+    /**
+     * reiniciar el form
+     */
+    setFormstate({
+      mascota: "",
+      dueño: "",
+      fecha: "",
+      hora: "",
+      sintomas: "",
+    });
   };
-
-  const { mascota, dueño, fecha, hora, sintomas } = formstate;
 
   return (
     <>
       <h2>Crea una cita</h2>
+      {error ? (
+        <p className="alerta-error">Todos los campos son obligatorios</p>
+      ) : null}
       <form action="" method="GET" onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="">Nombre mascota: </label>
@@ -78,7 +106,6 @@ export const Form = () => {
             id=""
             min={hoy}
             max={pasado}
-            required
             onChange={handleChange}
             value={fecha}
           />

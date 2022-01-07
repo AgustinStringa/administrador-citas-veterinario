@@ -1,8 +1,10 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Form } from './components/Form'
 
 
 function App() {
+  const [citas, setCitas] = useState([]);
+
   return (
     <>
       <h1>Administrador de consultas</h1>
@@ -10,7 +12,7 @@ function App() {
       <div className='container'>
         <div className='row'>
           <div className='one-half column'>
-            <Form />
+            <Form citas={citas} setCitas={setCitas} />
           </div>
         </div>
       </div>
