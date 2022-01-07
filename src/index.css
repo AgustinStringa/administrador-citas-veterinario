@@ -104,3 +104,7 @@ input[type="time"] {
   text-align: center;
   font-family: "Staatliches", cursive;
 }
+
+textarea {
+  width: 100%;
+}
