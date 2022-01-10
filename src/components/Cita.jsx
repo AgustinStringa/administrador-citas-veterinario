@@ -1,14 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-export const Cita = ({
-  mascota,
-  dueño,
-  fecha,
-  hora,
-  sintomas,
-  id,
-  eliminarCita,
-}) => {
+const Cita = ({ mascota, dueño, fecha, hora, sintomas, id, eliminarCita }) => {
   return (
     <li className="cita">
       <p>
@@ -37,3 +30,14 @@ export const Cita = ({
     </li>
   );
 };
+
+Cita.propTypes = {
+  mascota: PropTypes.string.isRequired,
+  dueño: PropTypes.string.isRequired,
+  fecha: PropTypes.string.isRequired,
+  hora: PropTypes.string.isRequired,
+  sintomas: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  eliminarCita: PropTypes.func.isRequired,
+};
+export default Cita;

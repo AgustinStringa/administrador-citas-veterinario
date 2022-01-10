@@ -1,7 +1,8 @@
 import React, { Fragment } from "react";
-import { Cita } from "./Cita";
+import Cita from "./Cita";
+import PropTypes from "prop-types";
 
-export const ListOfCitas = ({ citas, setCitas }) => {
+const ListOfCitas = ({ citas, setCitas }) => {
   const eliminarCita = (id) => {
     const nuevasCitas = citas.filter((cita) => cita.formstate.id !== id);
     setCitas(nuevasCitas);
@@ -30,3 +31,10 @@ export const ListOfCitas = ({ citas, setCitas }) => {
     );
   }
 };
+
+ListOfCitas.propTypes = {
+  citas: PropTypes.array.isRequired,
+  setCitas: PropTypes.func.isRequired,
+};
+
+export default ListOfCitas;

@@ -1,10 +1,19 @@
-import React, { Fragment, useState } from 'react';
-import { Form } from './components/Form'
-import { ListOfCitas } from './components/ListOfCitas';
+import React, { Fragment, useState, useEffect } from 'react';
+import Form from './components/Form'
+import ListOfCitas from './components/ListOfCitas';
 
 
 function App() {
-  const [citas, setCitas] = useState([]);
+  var citasAlmacenadas = JSON.parse(localStorage.getItem('citas'));
+  if (!citasAlmacenadas) {
+    citasAlmacenadas = [];
+  }
+
+  const [citas, setCitas] = useState(citasAlmacenadas);
+
+  useEffect(() => {
+    localStorage.setItem('citas', JSON.stringify(citas));
+  }, [citas])
 
   return (
     <>

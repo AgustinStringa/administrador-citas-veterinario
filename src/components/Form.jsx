@@ -1,15 +1,22 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { v4 } from "uuid";
+import Swal from "sweetalert2";
 
-export const Form = ({ citas, setCitas }) => {
+const Form = ({ citas, setCitas }) => {
   const nuevaFecha = new Date();
-  const hoy = `${nuevaFecha.getFullYear()}/${
-    nuevaFecha.getMonth() + 1
-  }/${nuevaFecha.getDate()}`;
-
-  const pasado = `${nuevaFecha.getFullYear()}/${nuevaFecha.getMonth() + 1}/${
-    nuevaFecha.getDate() + 2
+  const hoy_anio = `${nuevaFecha.getFullYear()}`;
+  const hoy_mes = `${
+    String(nuevaFecha.getMonth() + 1).length === 1
+      ? "0" + String(nuevaFecha.getMonth() + 1)
+      : nuevaFecha.getMonth() + 1
   }`;
+  const hoy_dia = `${
+    String(nuevaFecha.getDate()).length === 1
+      ? "0" + String(nuevaFecha.getDate())
+      : nuevaFecha.getDate()
+  }`;
+  const hoy = hoy_anio + "-" + hoy_mes + "-" + hoy_dia;
 
   const [formstate, setFormstate] = useState({
     mascota: "",
@@ -25,13 +32,33 @@ export const Form = ({ citas, setCitas }) => {
 
   const handleChange = (evt) => {
     const nuevoState = { ...formstate };
+    //comprobando que la cita no sea sabado o domingo
+    const diaSemanal = new Date(evt.target.value).getDay();
+    const input_hora = document.querySelector('input[type="time"]');
+
+    if (evt.target.type === "date") {
+      if (diaSemanal === 5) {
+        console.log(evt.target.type);
+        input_hora.min = "08:00";
+        input_hora.max = "12:00";
+        Swal.fire({
+          title: "Info",
+          text: "Las citas los días sábados deben ser entre las 08:00 y las 12:00",
+          icon: "info",
+          confirmButtonText: "Entendido",
+        });
+      } else {
+        input_hora.min = "08:00";
+        input_hora.max = "19:00";
+      }
+    }
+
     nuevoState[`${evt.target.name}`] = evt.target.value;
     setFormstate(nuevoState);
   };
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-
     if (
       !mascota.trim() ||
       !dueño.trim() ||
@@ -51,7 +78,12 @@ export const Form = ({ citas, setCitas }) => {
      * crear la cita
      */
     setCitas([...citas, { formstate }]);
-    alert("la cita se ha agregado correctamente");
+    Swal.fire({
+      title: "Operacion exitosa",
+      text: "Cita agregada correctamente",
+      icon: "success",
+      confirmButtonText: "OK",
+    });
     /**
      * reiniciar el form
      */
@@ -78,7 +110,7 @@ export const Form = ({ citas, setCitas }) => {
             type="text"
             name="mascota"
             id=""
-            placeholder="Nombre de tu mascota"
+            placeholder="Nombre de la mascota"
             onChange={handleChange}
             value={mascota}
           />
@@ -104,8 +136,8 @@ export const Form = ({ citas, setCitas }) => {
             type="date"
             name="fecha"
             id=""
+            max="2022-12-31"
             min={hoy}
-            max={pasado}
             onChange={handleChange}
             value={fecha}
           />
@@ -117,6 +149,8 @@ export const Form = ({ citas, setCitas }) => {
             className="u-full-width"
             type="time"
             name="hora"
+            min="08:00"
+            max="19:00"
             id=""
             onChange={handleChange}
             value={hora}
@@ -142,3 +176,10 @@ export const Form = ({ citas, setCitas }) => {
     </>
   );
 };
+
+Form.propTypes = {
+  citas: PropTypes.array.isRequired,
+  setCitas: PropTypes.func.isRequired,
+};
+
+export default Form;

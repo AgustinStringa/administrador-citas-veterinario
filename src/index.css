@@ -97,8 +97,9 @@ input[type="time"] {
 }
 
 .alerta-error {
-  background-color: white;
-  color: red;
+  color: #842029;
+  background-color: #f8d7da;
+  border-color: #f5c2c7;
   padding: 1rem;
   font-size: 2rem;
   text-transform: uppercase;
@@ -107,8 +108,9 @@ input[type="time"] {
 }
 
 .alerta-info {
-  background-color: rgba(255, 255, 255, 0.863);
-  color: #33c3f0;
+  color: #055160;
+  background-color: #cff4fc;
+  border-color: #b6effb;
   padding: 1rem;
   font-size: 2rem;
   text-transform: uppercase;
@@ -117,4 +119,20 @@ input[type="time"] {
 }
 textarea {
   width: 100%;
+}
+
+.swal2-container * {
+  font-size: 2rem !important;
+}
+
+.swal2-title {
+  font-size: 3rem !important;
+}
+
+.swal2-styled {
+  padding: 0 30px !important;
+}
+
+.swal2-icon-content {
+  font-size: 5rem !important;
 }
