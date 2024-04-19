@@ -38,7 +38,6 @@ const Form = ({ citas, setCitas }) => {
 
     if (evt.target.type === "date") {
       if (diaSemanal === 5) {
-        console.log(evt.target.type);
         input_hora.min = "08:00";
         input_hora.max = "12:00";
         Swal.fire({
@@ -136,7 +135,6 @@ const Form = ({ citas, setCitas }) => {
             type="date"
             name="fecha"
             id=""
-            max="2022-12-31"
             min={hoy}
             onChange={handleChange}
             value={fecha}
