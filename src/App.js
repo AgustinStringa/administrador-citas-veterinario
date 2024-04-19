@@ -17,7 +17,7 @@ function App() {
 
   return (
     <>
-      <h1>Administrador de consultas</h1>
+      <h1>Administrador de consultas veterinarias</h1>
 
       <div className='container'>
         <div className='row'>
