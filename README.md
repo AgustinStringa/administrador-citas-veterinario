@@ -11,3 +11,7 @@ Así se ve la pantalla principal del proyecto:
 ## Detalles
 
 La app cuenta con unos pocos componentes y realiza un CRUD con persistencia en local storage.
+
+## Link a la aplicacion
+
+[https://administrador-consultas-stri.netlify.app/](https://administrador-consultas-stri.netlify.app/)

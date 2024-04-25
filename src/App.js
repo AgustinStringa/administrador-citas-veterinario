@@ -21,10 +21,10 @@ function App() {
 
       <div className='container'>
         <div className='row'>
-          <div className='one-half column'>
+          <div className='one-half column form-container'>
             <Form citas={citas} setCitas={setCitas} />
           </div>
-          <div className='one-half column'>
+          <div className='one-half column list-citas-container'>
             {citas.length === 0 ? <h2>Agrega una cita para comenzar</h2> : <h2>Administra tus citas</h2>}
             <ListOfCitas citas={citas} setCitas={setCitas} />
           </div>
