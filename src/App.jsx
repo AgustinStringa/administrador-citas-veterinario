@@ -12,18 +12,24 @@ function App() {
 
   return (
     <>
-      <h1>Administrador de consultas veterinarias</h1>
+      <h1 className="bg-white mx-0 p-4 text-center font-[Staatliches] text-4xl uppercase tracking-wide text-[#373131]">
+        Administrador de consultas veterinarias
+      </h1>
 
-      <div className="container">
-        <div className="row">
-          <div className="one-half column form-container">
+      <div className="pt-12">
+        <div className="grid grid-cols-1 items-start gap-4 px-3 md:grid-cols-2">
+          <div className="rounded-2xl bg-[#373131] px-4 py-3">
             <Form citas={citas} setCitas={setCitas} />
           </div>
-          <div className="one-half column list-citas-container">
+          <div className="rounded-2xl bg-[#373131] px-4 py-3 flex flex-col gap-y-2">
             {citas.length === 0 ? (
-              <h2>Agrega una cita para comenzar</h2>
+              <h2 className="m-0 text-center font-[Staatliches] text-4xl uppercase tracking-wide text-white">
+                Agrega una cita para comenzar
+              </h2>
             ) : (
-              <h2>Administra tus citas</h2>
+              <h2 className="m-0 text-center font-[Staatliches] text-4xl uppercase tracking-wide text-white">
+                Administra tus citas
+              </h2>
             )}
             <ListOfCitas citas={citas} setCitas={setCitas} />
           </div>

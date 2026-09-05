@@ -90,77 +90,116 @@ const Form = ({ citas, setCitas }) => {
 
   return (
     <>
-      <h2>Crea una cita</h2>
+      <h2 className="m-0 text-center font-[Staatliches] text-4xl uppercase tracking-wide text-white">
+        Crea una cita
+      </h2>
       {error ? (
-        <p className="alerta-error">Todos los campos son obligatorios</p>
+        <p className="bg-[#f8d7da] p-4 text-center font-[Staatliches] text-2xl uppercase text-[#842029]">
+          Todos los campos son obligatorios
+        </p>
       ) : null}
       <form action="" method="GET" onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="">Nombre mascota: </label>
-          <input
-            className="u-full-width"
-            type="text"
-            name="mascota"
-            id=""
-            placeholder="Nombre de la mascota"
-            onChange={handleChange}
-            value={mascota}
-          />
+        <div className="-mx-3 mb-6 flex flex-wrap">
+          <div className="mb-6 w-full px-3 md:mb-0 md:w-1/2">
+            <label
+              className="mb-2 block text-xs font-bold uppercase tracking-wide text-white"
+              htmlFor="mascota"
+            >
+              Nombre mascota:
+            </label>
+            <input
+              className="appearance-none block w-full rounded border border-gray-200 bg-gray-200 px-4 py-3 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none"
+              type="text"
+              name="mascota"
+              id="mascota"
+              placeholder="Nombre de la mascota"
+              onChange={handleChange}
+              value={mascota}
+            />
+          </div>
+
+          <div className="w-full px-3 md:w-1/2">
+            <label
+              className="mb-2 block text-xs font-bold uppercase tracking-wide text-white"
+              htmlFor="dueño"
+            >
+              Nombre dueño:
+            </label>
+            <input
+              className="appearance-none block w-full rounded border border-gray-200 bg-gray-200 px-4 py-3 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none"
+              type="text"
+              name="dueño"
+              id="dueño"
+              placeholder="Nombre del dueño"
+              onChange={handleChange}
+              value={dueño}
+            />
+          </div>
         </div>
 
-        <div className="form-group">
-          <label htmlFor="">Nombre dueño: </label>
-          <input
-            className="u-full-width"
-            type="text"
-            name="dueño"
-            id=""
-            placeholder="Nombre del dueño"
-            onChange={handleChange}
-            value={dueño}
-          />
+        <div className="-mx-3 mb-6 flex flex-wrap">
+          <div className="mb-6 w-full px-3 md:mb-0 md:w-1/2">
+            <label
+              className="mb-2 block text-xs font-bold uppercase tracking-wide text-white"
+              htmlFor="fecha"
+            >
+              Fecha:
+            </label>
+            <input
+              className="appearance-none block w-full rounded border border-gray-200 bg-gray-200 px-4 py-3 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none"
+              type="date"
+              name="fecha"
+              id="fecha"
+              min={hoy}
+              onChange={handleChange}
+              value={fecha}
+            />
+          </div>
+
+          <div className="w-full px-3 md:w-1/2">
+            <label
+              className="mb-2 block text-xs font-bold uppercase tracking-wide text-white"
+              htmlFor="hora"
+            >
+              Hora:
+            </label>
+            <input
+              className="appearance-none block w-full rounded border border-gray-200 bg-gray-200 px-4 py-3 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none"
+              type="time"
+              name="hora"
+              min="08:00"
+              max="19:00"
+              id="hora"
+              onChange={handleChange}
+              value={hora}
+            />
+          </div>
         </div>
 
-        <div className="form-group">
-          <label htmlFor="">Fecha: </label>
-          <input
-            className="u-full-width"
-            type="date"
-            name="fecha"
-            id=""
-            min={hoy}
-            onChange={handleChange}
-            value={fecha}
-          />
+        <div className="-mx-3 mb-6 flex flex-wrap">
+          <div className="w-full px-3">
+            <label
+              className="mb-2 block text-xs font-bold uppercase tracking-wide text-white"
+              htmlFor="sintomas"
+            >
+              Síntomas:
+            </label>
+            <textarea
+              className="appearance-none block w-full resize-y rounded border border-gray-200 bg-gray-200 px-4 py-3 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none"
+              name="sintomas"
+              id="sintomas"
+              onChange={handleChange}
+              value={sintomas}
+            ></textarea>
+          </div>
         </div>
 
-        <div className="form-group">
-          <label htmlFor="">Hora: </label>
-          <input
-            className="u-full-width"
-            type="time"
-            name="hora"
-            min="08:00"
-            max="19:00"
-            id=""
-            onChange={handleChange}
-            value={hora}
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="">Síntomas: </label>
-          <textarea
-            name="sintomas"
-            id=""
-            onChange={handleChange}
-            value={sintomas}
-          ></textarea>
-        </div>
-
-        <div className="form-group">
-          <button type="submit" className="u-full-width button-primary">
-            AGREGAR CITA
+        <div className="mb-6 flex flex-wrap justify-end">
+          <button
+            type="submit"
+            className="cursor-pointer rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+          >
+            Agregar cita
           </button>
         </div>
       </form>

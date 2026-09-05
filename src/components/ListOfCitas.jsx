@@ -9,11 +9,15 @@ const ListOfCitas = ({ citas, setCitas }) => {
   };
 
   if (citas.length === 0) {
-    return <p className="alerta-info">Aquí se mostraran tus citas</p>;
+    return (
+      <p className="bg-[#cff4fc] p-4 text-center font-[Staatliches] text-2xl uppercase text-[#055160]">
+        Aquí se mostraran tus citas
+      </p>
+    );
   } else {
     return (
       <>
-        <ul className="lista-citas">
+        <ul className="m-0 list-none p-0 flex flex-col gap-y-2">
           {citas.map((cita) => (
             <Cita
               key={cita.formstate.id}

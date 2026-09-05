@@ -1,5 +1,11 @@
 import Swal from "sweetalert2";
 
+const notificationClasses = {
+  popup: "text-[2rem]",
+  title: "text-[3rem]",
+  confirmButton: "px-[30px] py-0",
+};
+
 export const showSaturdayInfo = () => {
   showInfoAlert({
     title: "Info",
@@ -34,5 +40,6 @@ const showAlert = ({ title, text, confirmButtonText = "OK", icon }) => {
     text: text,
     icon: icon,
     confirmButtonText: confirmButtonText,
+    customClass: notificationClasses,
   });
 }
