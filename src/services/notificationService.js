@@ -1,0 +1,38 @@
+import Swal from "sweetalert2";
+
+export const showSaturdayInfo = () => {
+  showInfoAlert({
+    title: "Info",
+    text: "Las citas los días sábados deben ser entre las 08:00 y las 12:00",
+    confirmButtonText: "Entendido",
+  })
+};
+
+export const showAppointmentCreated = () => {
+  showSuccessAlert({
+    title: "Operacion exitosa",
+    text: "Cita agregada correctamente",
+    confirmButtonText: "OK",
+  });
+};
+
+const showSuccessAlert = ({ title, text, confirmButtonText }) => {
+  showAlert({
+    title, text, confirmButtonText, icon: "success",
+  })
+}
+
+const showInfoAlert = ({ title, text, confirmButtonText }) => {
+  showAlert({
+    title, text, confirmButtonText, icon: "info",
+  })
+}
+
+const showAlert = ({ title, text, confirmButtonText = "OK", icon }) => {
+  Swal.fire({
+    title: title,
+    text: text,
+    icon: icon,
+    confirmButtonText: confirmButtonText,
+  });
+}

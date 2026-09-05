@@ -25,7 +25,7 @@ const Cita = ({ mascota, dueño, fecha, hora, sintomas, id, eliminarCita }) => {
           eliminarCita(id);
         }}
       >
-        Eliminar cita &times;
+        Eliminar cita
       </button>
     </li>
   );

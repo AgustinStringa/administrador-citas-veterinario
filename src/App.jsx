@@ -1,31 +1,30 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import Form from './components/Form'
-import ListOfCitas from './components/ListOfCitas';
-
+import React, { Fragment, useState, useEffect } from "react";
+import Form from "./components/Form";
+import ListOfCitas from "./components/ListOfCitas";
+import { getCitas, saveCitas } from "./services/localStorageService";
 
 function App() {
-  var citasAlmacenadas = JSON.parse(localStorage.getItem('citas'));
-  if (!citasAlmacenadas) {
-    citasAlmacenadas = [];
-  }
-
-  const [citas, setCitas] = useState(citasAlmacenadas);
+  const [citas, setCitas] = useState(getCitas);
 
   useEffect(() => {
-    localStorage.setItem('citas', JSON.stringify(citas));
-  }, [citas])
+    saveCitas(citas);
+  }, [citas]);
 
   return (
     <>
       <h1>Administrador de consultas veterinarias</h1>
 
-      <div className='container'>
-        <div className='row'>
-          <div className='one-half column form-container'>
+      <div className="container">
+        <div className="row">
+          <div className="one-half column form-container">
             <Form citas={citas} setCitas={setCitas} />
           </div>
-          <div className='one-half column list-citas-container'>
-            {citas.length === 0 ? <h2>Agrega una cita para comenzar</h2> : <h2>Administra tus citas</h2>}
+          <div className="one-half column list-citas-container">
+            {citas.length === 0 ? (
+              <h2>Agrega una cita para comenzar</h2>
+            ) : (
+              <h2>Administra tus citas</h2>
+            )}
             <ListOfCitas citas={citas} setCitas={setCitas} />
           </div>
         </div>

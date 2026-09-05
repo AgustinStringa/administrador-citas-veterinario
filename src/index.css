@@ -24,7 +24,7 @@ body {
       #a445b2 0%,
       #d41872 52%,
       #ff0066 100%);
-  background-image: url("../public/corgi-4415649_1920.jpg");
+  background-image: url("/corgi-4415649_1920.jpg");
   min-height: 100%;
   padding-bottom: 5rem;
 }

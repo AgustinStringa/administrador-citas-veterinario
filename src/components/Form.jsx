@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { v4 } from "uuid";
-import Swal from "sweetalert2";
+import {
+  showAppointmentCreated,
+  showSaturdayInfo,
+} from "../services/notificationService";
 
 const Form = ({ citas, setCitas }) => {
   const nuevaFecha = new Date();
@@ -40,12 +43,7 @@ const Form = ({ citas, setCitas }) => {
       if (diaSemanal === 5) {
         input_hora.min = "08:00";
         input_hora.max = "12:00";
-        Swal.fire({
-          title: "Info",
-          text: "Las citas los días sábados deben ser entre las 08:00 y las 12:00",
-          icon: "info",
-          confirmButtonText: "Entendido",
-        });
+        showSaturdayInfo();
       } else {
         input_hora.min = "08:00";
         input_hora.max = "19:00";
@@ -77,12 +75,7 @@ const Form = ({ citas, setCitas }) => {
      * crear la cita
      */
     setCitas([...citas, { formstate }]);
-    Swal.fire({
-      title: "Operacion exitosa",
-      text: "Cita agregada correctamente",
-      icon: "success",
-      confirmButtonText: "OK",
-    });
+    showAppointmentCreated();
     /**
      * reiniciar el form
      */
