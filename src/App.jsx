@@ -1,7 +1,12 @@
 import React, { Fragment, useState, useEffect } from "react";
 import Form from "./components/Form";
 import ListOfCitas from "./components/ListOfCitas";
-import { getCitas, saveCitas } from "./services/localStorageService";
+import {
+  clearCitas,
+  getCitas,
+  saveCitas,
+} from "./services/localStorageService";
+import { requestConfirmation } from "./services/notificationService";
 
 function App() {
   const [citas, setCitas] = useState(getCitas);
@@ -10,28 +15,55 @@ function App() {
     saveCitas(citas);
   }, [citas]);
 
+  const handleClearCitas = async () => {
+    const confirmed = await requestConfirmation({
+      title: "¿Limpiar todas las citas?",
+      text: "Esta acción eliminará todas las citas guardadas y no se puede deshacer.",
+      confirmButtonText: "Sí, limpiar citas",
+      cancelButtonText: "Cancelar",
+    });
+
+    if (!confirmed) {
+      return;
+    }
+
+    clearCitas();
+    setCitas([]);
+  };
+
   return (
     <>
-      <h1 className="bg-white mx-0 p-4 text-center font-[Staatliches] text-4xl uppercase tracking-wide text-[#373131]">
+      <h1 className="bg-white mx-0 p-4 text-center text-3xl uppercase tracking-wide text-(--primary-color)">
         Administrador de consultas veterinarias
       </h1>
 
       <div className="pt-12">
         <div className="grid grid-cols-1 items-start gap-4 px-3 md:grid-cols-2">
-          <div className="rounded-2xl bg-[#373131] px-4 py-3">
+          <div className="primary-background rounded-2xl px-4 py-3">
             <Form citas={citas} setCitas={setCitas} />
           </div>
-          <div className="rounded-2xl bg-[#373131] px-4 py-3 flex flex-col gap-y-2">
+          <div className="primary-background flex flex-col gap-y-2 rounded-2xl px-4 py-3">
             {citas.length === 0 ? (
-              <h2 className="m-0 text-center font-[Staatliches] text-4xl uppercase tracking-wide text-white">
+              <h2 className="m-0 text-center text-3xl tracking-wide text-white">
                 Agrega una cita para comenzar
               </h2>
             ) : (
-              <h2 className="m-0 text-center font-[Staatliches] text-4xl uppercase tracking-wide text-white">
+              <h2 className="m-0 mb-3 text-center text-3xl tracking-wide text-white">
                 Administra tus citas
               </h2>
             )}
-            <ListOfCitas citas={citas} setCitas={setCitas} />
+            <div className="flex flex-col gap-3">
+              <ListOfCitas citas={citas} setCitas={setCitas} />
+              <button
+                type="button"
+                className="cursor-pointer self-end rounded border border-white px-4 py-2 text-sm font-semibold text-white hover:bg-white hover:text-(--primary-color) disabled:cursor-not-allowed disabled:opacity-50"
+                onClick={handleClearCitas}
+                disabled={citas.length === 0}
+                aria-label="Limpiar todas las citas"
+              >
+                Limpiar todas las citas
+              </button>
+            </div>
           </div>
         </div>
       </div>

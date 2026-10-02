@@ -90,11 +90,11 @@ const Form = ({ citas, setCitas }) => {
 
   return (
     <>
-      <h2 className="m-0 text-center font-[Staatliches] text-4xl uppercase tracking-wide text-white">
+      <h2 className="m-0 mb-3 text-center text-4xl tracking-wide text-white">
         Crea una cita
       </h2>
       {error ? (
-        <p className="bg-[#f8d7da] p-4 text-center font-[Staatliches] text-2xl uppercase text-[#842029]">
+        <p className="secondary-background p-4 text-center text-2xl text-(--primary-color)">
           Todos los campos son obligatorios
         </p>
       ) : null}
@@ -197,7 +197,7 @@ const Form = ({ citas, setCitas }) => {
         <div className="mb-6 flex flex-wrap justify-end">
           <button
             type="submit"
-            className="cursor-pointer rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+            className="secondary-background cursor-pointer rounded px-4 py-2 font-bold text-(--primary-color) hover:brightness-95 focus:outline-none focus:shadow-outline"
           >
             Agregar cita
           </button>

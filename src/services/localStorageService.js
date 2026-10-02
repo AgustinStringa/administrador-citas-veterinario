@@ -1,10 +1,9 @@
+import { createStorageService } from "../../shared/src/services/localStorageService.js";
+
 const CITAS_STORAGE_KEY = "fe-react-app-citas";
 
-export const getCitas = () => {
-  const citas = JSON.parse(localStorage.getItem(CITAS_STORAGE_KEY));
-  return citas || [];
-};
+const citasStorage = createStorageService(CITAS_STORAGE_KEY, []);
 
-export const saveCitas = (citas) => {
-  localStorage.setItem(CITAS_STORAGE_KEY, JSON.stringify(citas));
-};
+export const getCitas = citasStorage.get;
+export const saveCitas = citasStorage.save;
+export const clearCitas = citasStorage.clear;

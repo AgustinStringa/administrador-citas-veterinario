@@ -22,6 +22,24 @@ export const showAppointmentCreated = () => {
   });
 };
 
+export const requestConfirmation = ({
+  title,
+  text,
+  confirmButtonText = "Confirmar",
+  cancelButtonText = "Cancelar",
+  icon = "warning",
+}) => {
+  return Swal.fire({
+    title,
+    text,
+    icon,
+    showCancelButton: true,
+    confirmButtonText,
+    cancelButtonText,
+    customClass: notificationClasses,
+  }).then(({ isConfirmed }) => isConfirmed);
+};
+
 const showSuccessAlert = ({ title, text, confirmButtonText }) => {
   showAlert({
     title, text, confirmButtonText, icon: "success",

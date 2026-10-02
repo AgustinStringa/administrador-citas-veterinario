@@ -10,7 +10,7 @@ const ListOfCitas = ({ citas, setCitas }) => {
 
   if (citas.length === 0) {
     return (
-      <p className="bg-[#cff4fc] p-4 text-center font-[Staatliches] text-2xl uppercase text-[#055160]">
+      <p className="secondary-background p-2 text-center italic text-2xl text-(--primary-color)">
         Aquí se mostraran tus citas
       </p>
     );
