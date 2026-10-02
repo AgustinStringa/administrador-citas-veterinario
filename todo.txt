@@ -1,0 +1,12 @@
+- agregar rango de dias laborales configurables sobre los cuales validar
+- cambiar archivo de background y/o su nombre
+- cambiar captura y su nombre
+- aplicar estilos mediante tailwind
+- verificar estilos responsive
+- agregar funcionalidad para editar cita, cambiar la forma de acceso/eliminacion de localstorage
+- buscador de citas por varios campos
+- hacer mas chica la card de cita, cambiar a componente desplegable y que el contenedor tenga scroll en y 
+- cambiar el mian por flex, no grid para que el form no tome todo el ancho
+- referencias 
+    - https://www.mascota24.com.ar/?utm_source=gAds&utm_medium=Alma&utm_campaign=Search-Abono&gad_source=1&gad_campaignid=23868860045&gbraid=0AAAABC-G3FG4m6QnlPxXaVri8XBQ9HzOs&gclid=CjwKCAjwwfnUBhAtEiwAfQpAYhLwrGN1tIq_UErRltwiV9qm9elL_j_LbTVg4m8OUQ4zgg_GcyWcuBoC7JoQAvD_BwE
+    - https://vet24.ar/

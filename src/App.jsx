@@ -7,6 +7,7 @@ import {
   saveCitas,
 } from "./services/localStorageService";
 import { requestConfirmation } from "./services/notificationService";
+import { Header, Footer } from "../shared";
 
 function App() {
   const [citas, setCitas] = useState(getCitas);
@@ -32,12 +33,13 @@ function App() {
   };
 
   return (
-    <>
-      <h1 className="bg-white mx-0 p-4 text-center text-3xl uppercase tracking-wide text-(--primary-color)">
-        Administrador de consultas veterinarias
-      </h1>
+    <div className="flex min-h-screen flex-col justify-between">
+      <Header
+        title="Administrador de consultas veterinarias"
+        variant="teal"
+      />
 
-      <div className="pt-12">
+      <div className="py-8">
         <div className="grid grid-cols-1 items-start gap-4 px-3 md:grid-cols-2">
           <div className="primary-background rounded-2xl px-4 py-3">
             <Form citas={citas} setCitas={setCitas} />
@@ -67,7 +69,13 @@ function App() {
           </div>
         </div>
       </div>
-    </>
+
+      <Footer
+        title="Administrador Citas Veterinario"
+        description="Gestión de citas y pacientes para clínicas veterinarias."
+        variant="teal"
+      />
+    </div>
   );
 }
 
