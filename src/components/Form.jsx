@@ -5,21 +5,10 @@ import {
   showAppointmentCreated,
   showSaturdayInfo,
 } from "../services/notificationService";
+import { toISODateString, getDayOfWeek } from "../../shared";
 
 const Form = ({ citas, setCitas }) => {
-  const nuevaFecha = new Date();
-  const hoy_anio = `${nuevaFecha.getFullYear()}`;
-  const hoy_mes = `${
-    String(nuevaFecha.getMonth() + 1).length === 1
-      ? "0" + String(nuevaFecha.getMonth() + 1)
-      : nuevaFecha.getMonth() + 1
-  }`;
-  const hoy_dia = `${
-    String(nuevaFecha.getDate()).length === 1
-      ? "0" + String(nuevaFecha.getDate())
-      : nuevaFecha.getDate()
-  }`;
-  const hoy = hoy_anio + "-" + hoy_mes + "-" + hoy_dia;
+  const hoy = toISODateString(new Date());
 
   const [formstate, setFormstate] = useState({
     mascota: "",
@@ -35,8 +24,7 @@ const Form = ({ citas, setCitas }) => {
 
   const handleChange = (evt) => {
     const nuevoState = { ...formstate };
-    //comprobando que la cita no sea sabado o domingo
-    const diaSemanal = new Date(evt.target.value).getDay();
+    const diaSemanal = getDayOfWeek(evt.target.value);
     const input_hora = document.querySelector('input[type="time"]');
 
     if (evt.target.type === "date") {
@@ -53,6 +41,7 @@ const Form = ({ citas, setCitas }) => {
     nuevoState[`${evt.target.name}`] = evt.target.value;
     setFormstate(nuevoState);
   };
+
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
